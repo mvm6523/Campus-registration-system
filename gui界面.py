@@ -9,11 +9,13 @@ class MyFrame(wx.Frame):
         # 创建面板
         panel = wx.Panel(self)
 
-        # 创建“确定”和“取消”按钮, 并绑定事件
+        # 创建按钮, 并绑定事件
         self.bt_confirm = wx.Button(panel,  label='进入校园')
         self.bt_confirm.Bind(wx.EVT_BUTTON, self.OnclickSubmit)
         self.bt_cancel = wx.Button(panel,  label='离开校园')
         self.bt_cancel.Bind(wx.EVT_BUTTON, self.OnclickCancel)
+        self.bt_xianshi = wx.Button(panel,  label='显示信息')
+        self.bt_xianshi.Bind(wx.EVT_BUTTON, self.OnclickXianshi)
         # 创建文本，左对齐        
         self.title = wx.StaticText(panel,  label="请输入姓名和学号")
         self.label_user = wx.StaticText(panel,  label="姓名:")
@@ -30,7 +32,7 @@ class MyFrame(wx.Frame):
         hsizer_button = wx.BoxSizer(wx.HORIZONTAL)
         hsizer_button.Add(self.bt_confirm,  proportion=0,  flag=wx.ALIGN_CENTER,  border=5)
         hsizer_button.Add(self.bt_cancel,  proportion=0,  flag=wx.ALIGN_CENTER,  border=5)
-        
+        hsizer_button.Add(self.bt_xianshi,  proportion=0,  flag=wx.ALIGN_CENTER,  border=5)
         # 添加容器，容器中控件按纵向并排排列
         vsizer_all = wx.BoxSizer(wx.VERTICAL)
         vsizer_all.Add(self.title,  proportion=0,  flag=wx.BOTTOM | wx.TOP | wx.ALIGN_CENTER, 
@@ -50,7 +52,7 @@ class MyFrame(wx.Frame):
         if name == "" or no == "":    # 判断姓名或学号是否为空
             message = '姓名或学号不能为空'
         else:
-            message = '姓名：'+name+' 学号：'+no+' 进入校园时间：'+time1_str            # 用户名或密码错误  
+            message = '姓名：'+name+' 学号：'+no+' 进入校园时间：'+time1_str           
             
         wx.MessageBox(message)                        # 弹出提示框          
 
@@ -64,11 +66,14 @@ class MyFrame(wx.Frame):
         if name == "" or no == "":    # 判断姓名或学号是否为空
             message = '姓名或学号不能为空'
         else:
-            message = '姓名：'+name+' 学号：'+no+' 离开校园时间：'+time1_str            # 用户名或密码错误 
-    
+            message = '姓名：'+name+' 学号：'+no+' 离开校园时间：'+time1_str   
         
-
-
+        wx.MessageBox(message)
+        
+    def OnclickXianshi(self, event):
+            message = ""
+            wx.MessageBox(message)
+        
 if __name__ == '__main__':
     app = wx.App()                      # 初始化
     frame = MyFrame(parent=None, id=-1)  # 实例MyFrame类，并传递参数    
